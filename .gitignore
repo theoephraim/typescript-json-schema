@@ -8,5 +8,6 @@ yarn-error.log
 .idea
 *~
 .#*
-dist/
+# dist/ # need to commit dist folder to be able to pull from github :
+dist/test
 .DS_Store

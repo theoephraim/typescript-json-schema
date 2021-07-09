@@ -634,12 +634,14 @@ export class JsonSchemaGenerator {
 
             if (flags & ts.TypeFlags.String) {
                 definition.type = "string";
-            } else if (flags & ts.TypeFlags.Number) {
+            } else if (flags & ts.TypeFlags.Number || flags & ts.TypeFlags.BigInt) {
                 const isInteger =
                     definition.type === "integer" ||
                     reffedType?.getName() === "integer" ||
                     defaultNumberType === "integer";
                 definition.type = isInteger ? "integer" : "number";
+            } else if (flags & ts.TypeFlags.BigInt) {
+                definition.type = "integer";
             } else if (flags & ts.TypeFlags.Boolean) {
                 definition.type = "boolean";
             } else if (flags & ts.TypeFlags.Null) {
